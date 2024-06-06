@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libcsr_graph.a CMakeFiles/csr_graph.dir/CSRGraph.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libcsr_graph.a
