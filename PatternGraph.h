@@ -1,8 +1,23 @@
-//
-// Created by carina on 2024/6/5.
-//
+#include <iostream>
+#include <algorithm>
+#include <fstream>
+#include <vector>
+#include <iterator>
+#include <set>
+#include <pthread.h>
 
-#ifndef PTHREADS_PATTERNGRAPH_H
-#define PTHREADS_PATTERNGRAPH_H
+using namespace std;
 
-#endif //PTHREADS_PATTERNGRAPH_H
+class PatternGraph{
+public:
+    int edge;
+    int node;
+    int *index_ptr_of_pattern;
+    int *indices_of_pattern;
+    int *num_of_neighbor;
+    int *order;
+    PatternGraph(int e,int n);
+    void GetTheNeighborOfEachNode();
+    void GetTheMatchingOrder();
+};
+

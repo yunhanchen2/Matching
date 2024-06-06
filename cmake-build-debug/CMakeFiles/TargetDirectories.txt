@@ -1,0 +1,5 @@
+/Users/carina/Desktop/Pthreads_with_class/cmake-build-debug/CMakeFiles/csr_graph.dir
+/Users/carina/Desktop/Pthreads_with_class/cmake-build-debug/CMakeFiles/pattern_graph.dir
+/Users/carina/Desktop/Pthreads_with_class/cmake-build-debug/CMakeFiles/main.dir
+/Users/carina/Desktop/Pthreads_with_class/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/carina/Desktop/Pthreads_with_class/cmake-build-debug/CMakeFiles/rebuild_cache.dir

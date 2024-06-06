@@ -1,8 +1,27 @@
-//
-// Created by carina on 2024/6/5.
-//
+#include <iostream>
+#include <algorithm>
+#include <fstream>
+#include <vector>
+#include <iterator>
+#include <set>
+#include <pthread.h>
 
-#ifndef PTHREADS_CSRGRAPH_H
-#define PTHREADS_CSRGRAPH_H
+using namespace std;
 
-#endif //PTHREADS_CSRGRAPH_H
+class CSRGraph {
+public:
+    int node;
+    int edge;
+    int *col_indices;
+    int *row_offsets;
+    int *true_index;
+    int **array;
+    int *query_list;
+
+    CSRGraph();
+    static bool compare(const int* a, const int* b);
+    void ReadTheGraph(char *pathname);
+    void removeDuplicates();
+    void GetFourArray();
+};
+
