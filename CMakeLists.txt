@@ -1,34 +1,22 @@
-cmake_minimum_required(VERSION 3.24.2)
-project(graph_matching_with_pthread)
+cmake_minimum_required(VERSION 3.16)
+
+project(MyProject)
 
 set(CMAKE_CXX_STANDARD 11)
-
-find_package(Threads REQUIRED)
-
-set(SOURCE_FILES
-    main.cpp
-    CSRGraph.cpp
-    PatternGraph.cpp
-)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    include
 )
 
-add_library(csr_graph STATIC
-    CSRGraph.cpp
-    CSRGraph.h
-)
+file(GLOB_RECURSE SRC_FILES "src/*.cpp" "include/*.h")
+add_library(${PROJECT_NAME} ${SRC_FILES})
 
-add_library(pattern_graph STATIC
-    PatternGraph.cpp
-    PatternGraph.h
-)
+file(GLOB_RECURSE DOC_FILES "doc/*.txt")
+add_custom_target(docs SOURCES ${DOC_FILES})
 
-add_executable(main ${SOURCE_FILES})
+target_link_libraries(${PROJECT_NAME} PUBLIC)
 
-target_link_libraries(main
-    csr_graph
-    pattern_graph
-    ${CMAKE_THREAD_LIBS_INIT}
-)
+set(EXECUTABLE_NAME "main")
+add_executable(${EXECUTABLE_NAME} "src/main.cpp")
+target_link_libraries(${EXECUTABLE_NAME} ${PROJECT_NAME})

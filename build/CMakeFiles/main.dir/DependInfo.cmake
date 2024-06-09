@@ -8,9 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/carina/Desktop/Pthreads_with_class/CSRGraph.cpp" "CMakeFiles/main.dir/CSRGraph.cpp.o" "gcc" "CMakeFiles/main.dir/CSRGraph.cpp.o.d"
-  "/Users/carina/Desktop/Pthreads_with_class/PatternGraph.cpp" "CMakeFiles/main.dir/PatternGraph.cpp.o" "gcc" "CMakeFiles/main.dir/PatternGraph.cpp.o.d"
-  "/Users/carina/Desktop/Pthreads_with_class/main.cpp" "CMakeFiles/main.dir/main.cpp.o" "gcc" "CMakeFiles/main.dir/main.cpp.o.d"
+  "/Users/carina/Desktop/Quick/src/main.cpp" "CMakeFiles/main.dir/src/main.cpp.o" "gcc" "CMakeFiles/main.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

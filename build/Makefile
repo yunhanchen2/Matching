@@ -57,10 +57,10 @@ RM = /opt/homebrew/Cellar/cmake/3.27.0/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/carina/Desktop/Pthreads_with_class
+CMAKE_SOURCE_DIR = /Users/carina/Desktop/Quick
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/carina/Desktop/Pthreads_with_class/build
+CMAKE_BINARY_DIR = /Users/carina/Desktop/Quick/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles /Users/carina/Desktop/Pthreads_with_class/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Quick/build/CMakeFiles /Users/carina/Desktop/Quick/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Quick/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,30 +117,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named csr_graph
+# Target rules for targets named MyProject
 
 # Build rule for target.
-csr_graph: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 csr_graph
-.PHONY : csr_graph
+MyProject: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MyProject
+.PHONY : MyProject
 
 # fast build rule for target.
-csr_graph/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csr_graph.dir/build.make CMakeFiles/csr_graph.dir/build
-.PHONY : csr_graph/fast
+MyProject/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/build
+.PHONY : MyProject/fast
 
 #=============================================================================
-# Target rules for targets named pattern_graph
+# Target rules for targets named docs
 
 # Build rule for target.
-pattern_graph: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pattern_graph
-.PHONY : pattern_graph
+docs: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 docs
+.PHONY : docs
 
 # fast build rule for target.
-pattern_graph/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pattern_graph.dir/build.make CMakeFiles/pattern_graph.dir/build
-.PHONY : pattern_graph/fast
+docs/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/docs.dir/build.make CMakeFiles/docs.dir/build
+.PHONY : docs/fast
 
 #=============================================================================
 # Target rules for targets named main
@@ -155,83 +155,80 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
-CSRGraph.o: CSRGraph.cpp.o
-.PHONY : CSRGraph.o
+src/CSRGraph.o: src/CSRGraph.cpp.o
+.PHONY : src/CSRGraph.o
 
 # target to build an object file
-CSRGraph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csr_graph.dir/build.make CMakeFiles/csr_graph.dir/CSRGraph.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/CSRGraph.cpp.o
-.PHONY : CSRGraph.cpp.o
+src/CSRGraph.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/src/CSRGraph.cpp.o
+.PHONY : src/CSRGraph.cpp.o
 
-CSRGraph.i: CSRGraph.cpp.i
-.PHONY : CSRGraph.i
+src/CSRGraph.i: src/CSRGraph.cpp.i
+.PHONY : src/CSRGraph.i
 
 # target to preprocess a source file
-CSRGraph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csr_graph.dir/build.make CMakeFiles/csr_graph.dir/CSRGraph.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/CSRGraph.cpp.i
-.PHONY : CSRGraph.cpp.i
+src/CSRGraph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/src/CSRGraph.cpp.i
+.PHONY : src/CSRGraph.cpp.i
 
-CSRGraph.s: CSRGraph.cpp.s
-.PHONY : CSRGraph.s
+src/CSRGraph.s: src/CSRGraph.cpp.s
+.PHONY : src/CSRGraph.s
 
 # target to generate assembly for a file
-CSRGraph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csr_graph.dir/build.make CMakeFiles/csr_graph.dir/CSRGraph.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/CSRGraph.cpp.s
-.PHONY : CSRGraph.cpp.s
+src/CSRGraph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/src/CSRGraph.cpp.s
+.PHONY : src/CSRGraph.cpp.s
 
-PatternGraph.o: PatternGraph.cpp.o
-.PHONY : PatternGraph.o
+src/PatternGraph.o: src/PatternGraph.cpp.o
+.PHONY : src/PatternGraph.o
 
 # target to build an object file
-PatternGraph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pattern_graph.dir/build.make CMakeFiles/pattern_graph.dir/PatternGraph.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/PatternGraph.cpp.o
-.PHONY : PatternGraph.cpp.o
+src/PatternGraph.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/src/PatternGraph.cpp.o
+.PHONY : src/PatternGraph.cpp.o
 
-PatternGraph.i: PatternGraph.cpp.i
-.PHONY : PatternGraph.i
+src/PatternGraph.i: src/PatternGraph.cpp.i
+.PHONY : src/PatternGraph.i
 
 # target to preprocess a source file
-PatternGraph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pattern_graph.dir/build.make CMakeFiles/pattern_graph.dir/PatternGraph.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/PatternGraph.cpp.i
-.PHONY : PatternGraph.cpp.i
+src/PatternGraph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/src/PatternGraph.cpp.i
+.PHONY : src/PatternGraph.cpp.i
 
-PatternGraph.s: PatternGraph.cpp.s
-.PHONY : PatternGraph.s
+src/PatternGraph.s: src/PatternGraph.cpp.s
+.PHONY : src/PatternGraph.s
 
 # target to generate assembly for a file
-PatternGraph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pattern_graph.dir/build.make CMakeFiles/pattern_graph.dir/PatternGraph.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/PatternGraph.cpp.s
-.PHONY : PatternGraph.cpp.s
+src/PatternGraph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/src/PatternGraph.cpp.s
+.PHONY : src/PatternGraph.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -241,18 +238,18 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... csr_graph"
+	@echo "... docs"
+	@echo "... MyProject"
 	@echo "... main"
-	@echo "... pattern_graph"
-	@echo "... CSRGraph.o"
-	@echo "... CSRGraph.i"
-	@echo "... CSRGraph.s"
-	@echo "... PatternGraph.o"
-	@echo "... PatternGraph.i"
-	@echo "... PatternGraph.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... src/CSRGraph.o"
+	@echo "... src/CSRGraph.i"
+	@echo "... src/CSRGraph.s"
+	@echo "... src/PatternGraph.o"
+	@echo "... src/PatternGraph.i"
+	@echo "... src/PatternGraph.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

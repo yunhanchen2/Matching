@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libMyProject.a CMakeFiles/MyProject.dir/src/CSRGraph.cpp.o CMakeFiles/MyProject.dir/src/PatternGraph.cpp.o CMakeFiles/MyProject.dir/src/main.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libMyProject.a

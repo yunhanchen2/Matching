@@ -1,5 +1,5 @@
-/Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles/csr_graph.dir
-/Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles/pattern_graph.dir
-/Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles/main.dir
-/Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles/edit_cache.dir
-/Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles/rebuild_cache.dir
+/Users/carina/Desktop/Quick/build/CMakeFiles/MyProject.dir
+/Users/carina/Desktop/Quick/build/CMakeFiles/docs.dir
+/Users/carina/Desktop/Quick/build/CMakeFiles/main.dir
+/Users/carina/Desktop/Quick/build/CMakeFiles/edit_cache.dir
+/Users/carina/Desktop/Quick/build/CMakeFiles/rebuild_cache.dir

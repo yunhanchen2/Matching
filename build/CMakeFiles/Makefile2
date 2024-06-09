@@ -54,17 +54,16 @@ RM = /opt/homebrew/Cellar/cmake/3.27.0/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/carina/Desktop/Pthreads_with_class
+CMAKE_SOURCE_DIR = /Users/carina/Desktop/Quick
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/carina/Desktop/Pthreads_with_class/build
+CMAKE_BINARY_DIR = /Users/carina/Desktop/Quick/build
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/csr_graph.dir/all
-all: CMakeFiles/pattern_graph.dir/all
+all: CMakeFiles/MyProject.dir/all
 all: CMakeFiles/main.dir/all
 .PHONY : all
 
@@ -73,79 +72,78 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/csr_graph.dir/clean
-clean: CMakeFiles/pattern_graph.dir/clean
+clean: CMakeFiles/MyProject.dir/clean
+clean: CMakeFiles/docs.dir/clean
 clean: CMakeFiles/main.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/csr_graph.dir
+# Target rules for target CMakeFiles/MyProject.dir
 
 # All Build rule for target.
-CMakeFiles/csr_graph.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csr_graph.dir/build.make CMakeFiles/csr_graph.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csr_graph.dir/build.make CMakeFiles/csr_graph.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles --progress-num=1,2 "Built target csr_graph"
-.PHONY : CMakeFiles/csr_graph.dir/all
+CMakeFiles/MyProject.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/carina/Desktop/Quick/build/CMakeFiles --progress-num=1,2,3,4 "Built target MyProject"
+.PHONY : CMakeFiles/MyProject.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/csr_graph.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/csr_graph.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles 0
-.PHONY : CMakeFiles/csr_graph.dir/rule
+CMakeFiles/MyProject.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Quick/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/MyProject.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Quick/build/CMakeFiles 0
+.PHONY : CMakeFiles/MyProject.dir/rule
 
 # Convenience name for target.
-csr_graph: CMakeFiles/csr_graph.dir/rule
-.PHONY : csr_graph
+MyProject: CMakeFiles/MyProject.dir/rule
+.PHONY : MyProject
 
 # clean rule for target.
-CMakeFiles/csr_graph.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/csr_graph.dir/build.make CMakeFiles/csr_graph.dir/clean
-.PHONY : CMakeFiles/csr_graph.dir/clean
+CMakeFiles/MyProject.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyProject.dir/build.make CMakeFiles/MyProject.dir/clean
+.PHONY : CMakeFiles/MyProject.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/pattern_graph.dir
+# Target rules for target CMakeFiles/docs.dir
 
 # All Build rule for target.
-CMakeFiles/pattern_graph.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pattern_graph.dir/build.make CMakeFiles/pattern_graph.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pattern_graph.dir/build.make CMakeFiles/pattern_graph.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles --progress-num=7,8 "Built target pattern_graph"
-.PHONY : CMakeFiles/pattern_graph.dir/all
+CMakeFiles/docs.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/docs.dir/build.make CMakeFiles/docs.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/docs.dir/build.make CMakeFiles/docs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/carina/Desktop/Quick/build/CMakeFiles --progress-num= "Built target docs"
+.PHONY : CMakeFiles/docs.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/pattern_graph.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/pattern_graph.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles 0
-.PHONY : CMakeFiles/pattern_graph.dir/rule
+CMakeFiles/docs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Quick/build/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/docs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Quick/build/CMakeFiles 0
+.PHONY : CMakeFiles/docs.dir/rule
 
 # Convenience name for target.
-pattern_graph: CMakeFiles/pattern_graph.dir/rule
-.PHONY : pattern_graph
+docs: CMakeFiles/docs.dir/rule
+.PHONY : docs
 
 # clean rule for target.
-CMakeFiles/pattern_graph.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pattern_graph.dir/build.make CMakeFiles/pattern_graph.dir/clean
-.PHONY : CMakeFiles/pattern_graph.dir/clean
+CMakeFiles/docs.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/docs.dir/build.make CMakeFiles/docs.dir/clean
+.PHONY : CMakeFiles/docs.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
-CMakeFiles/main.dir/all: CMakeFiles/csr_graph.dir/all
-CMakeFiles/main.dir/all: CMakeFiles/pattern_graph.dir/all
+CMakeFiles/main.dir/all: CMakeFiles/MyProject.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles --progress-num=3,4,5,6 "Built target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/carina/Desktop/Quick/build/CMakeFiles --progress-num=5,6 "Built target main"
 .PHONY : CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Quick/build/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Pthreads_with_class/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/carina/Desktop/Quick/build/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
 
 # Convenience name for target.
