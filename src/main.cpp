@@ -5,8 +5,8 @@
 #include <iterator>
 #include <set>
 #include <pthread.h>
-#include "PatternGraph.h"
-#include "CSRGraph.h"
+#include "../include/PatternGraph.h"
+#include "../include/CSRGraph.h"
 #include <chrono>
 
 using namespace std;
