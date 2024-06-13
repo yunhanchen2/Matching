@@ -7,7 +7,7 @@
 #include <time.h>
 #include <pthread.h>
 
-#include "PatternGraph.h"
+#include "../include/PatternGraph.h"
 
 using namespace std;
 
