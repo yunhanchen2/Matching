@@ -6,7 +6,7 @@
 #include <set>
 #include <time.h>
 #include <pthread.h>
-#include "CSRGraph.h"
+#include "../include/CSRGraph.h"
 
 using namespace std;
 
