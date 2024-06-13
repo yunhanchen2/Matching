@@ -5,8 +5,8 @@
 #include <iterator>
 #include <set>
 #include <pthread.h>
-#include "../include/PatternGraph.h"
-#include "../include/CSRGraph.h"
+#include "PatternGraph.h"
+#include "CSRGraph.h"
 #include <chrono>
 
 using namespace std;
@@ -16,25 +16,23 @@ static int number_of_thread;
 
 static CSRGraph graph;
 
-vector<int> node_of_matching;
-
 pthread_mutex_t mu;
 
 class DataPassingToThreads{
 public:
     static int * num_of_neighbor;
     static int * order;
-    int begin;
-    int end;
+    int * passing_node_to_thread_of_each;
     int round_index;
     int *neighbor_of_prenode_pattern;
     int size_of_neighbor_of_prenode_pattern;
-    DataPassingToThreads(int aBegin,int aEnd,int aRound_index,int * aNeighbor_of_prenode_pattern,int aSize_of_neighbor_of_prenode_pattern){
-        begin=aBegin;
-        end=aEnd;
+    int number_of_matching;
+    DataPassingToThreads(int *aPassing_node_to_thread_of_each,int aRound_index,int * aNeighbor_of_prenode_pattern,int aSize_of_neighbor_of_prenode_pattern,int aNumber_of_matching){
+        passing_node_to_thread_of_each=aPassing_node_to_thread_of_each;
         round_index=aRound_index;
         neighbor_of_prenode_pattern=aNeighbor_of_prenode_pattern;
         size_of_neighbor_of_prenode_pattern=aSize_of_neighbor_of_prenode_pattern;
+        number_of_matching=aNumber_of_matching;
     }
 };
 
@@ -70,37 +68,32 @@ void* graph_matching_threads(void *n){
 
     passingBack->number_of_matching_node=0;
 
-    //passing the data to var
-    int begin=dataPassingToThreads->begin;
-    int end=dataPassingToThreads->end;
-    int index=dataPassingToThreads->round_index;
-    int size_of_preneighbor=dataPassingToThreads->size_of_neighbor_of_prenode_pattern;
-    int *num_of_neighbor=dataPassingToThreads->num_of_neighbor;
-    int *order=dataPassingToThreads->order;
 
     if(dataPassingToThreads->round_index==0){
 
         //only check the degree
-        for (int j = begin; j < end; j++) {//满足其邻居条件以后,j为candidate node中的jth元素
-            if ((graph.row_offsets[graph.query_list[graph.true_index[j]]] - graph.row_offsets[graph.query_list[graph.true_index[j]] - 1]) >= num_of_neighbor[order[index]]) {//degree也满足了
-                passingBack->matching_node.push_back(graph.true_index[j]);//存新match的
+        for (int j = 0; j < dataPassingToThreads->number_of_matching; j++) {//满足其邻居条件以后,j为candidate node中的jth元素
+
+            if ((graph.row_offsets[graph.query_list[dataPassingToThreads->passing_node_to_thread_of_each[j]]] - graph.row_offsets[graph.query_list[dataPassingToThreads->passing_node_to_thread_of_each[j]] - 1]) >= dataPassingToThreads->num_of_neighbor[dataPassingToThreads->order[dataPassingToThreads->round_index]]) {//degree也满足了
+                passingBack->matching_node.push_back(dataPassingToThreads->passing_node_to_thread_of_each[j]);//存新match的
                 passingBack->number_of_matching_node++;
             }
+
         }
 
     } else {
         int *tem;
-        for(int i=begin;i<end;i++){
+        for(int i=0;i<dataPassingToThreads->number_of_matching;i++){
             //each time pick one group
-            tem=new int[index];
-            for(int j=0;j<index;j++){
-                tem[j]=node_of_matching[i*index+j];
+            tem=new int[dataPassingToThreads->round_index];
+            for(int j=0;j<dataPassingToThreads->round_index;j++){
+                tem[j]=dataPassingToThreads->passing_node_to_thread_of_each[i*dataPassingToThreads->round_index+j];
             }
 
             //get the neighbors
             vector<int> back;
-            vector< vector<int> > neibor(size_of_preneighbor);
-            for(int k=0;k<size_of_preneighbor;k++){//将邻居放入vector中
+            vector< vector<int> > neibor(dataPassingToThreads->size_of_neighbor_of_prenode_pattern);
+            for(int k=0;k<dataPassingToThreads->size_of_neighbor_of_prenode_pattern;k++){//将邻居放入vector中
                 for(int r=graph.row_offsets[graph.query_list[tem[dataPassingToThreads->neighbor_of_prenode_pattern[k]]]-1];r<graph.row_offsets[graph.query_list[tem[dataPassingToThreads->neighbor_of_prenode_pattern[k]]]];r++){
                     neibor[k].push_back(graph.col_indices[r]);//放入的是对应的编号而非第几个
                 }
@@ -112,11 +105,12 @@ void* graph_matching_threads(void *n){
                 }
             }
 
+
             //cut off the node before the node and have a new matching
             vector<int>::iterator it;
             for(it=back.begin();it!=back.end();){
                 bool check=true;
-                for(int j=0;j<index;j++){
+                for(int j=0;j<dataPassingToThreads->round_index;j++){
                     if(*it==tem[j]){
                         it=back.erase(it);
                         check= false;
@@ -130,8 +124,8 @@ void* graph_matching_threads(void *n){
 
             //check the degree
             for (int j = 0; j < back.size(); j++) {//满足其邻居条件以后,j为candidate node中的jth元素
-                if ((graph.row_offsets[graph.query_list[back[j]]] - graph.row_offsets[graph.query_list[back[j]] - 1]) >= dataPassingToThreads->num_of_neighbor[dataPassingToThreads->order[index]]) {//degree也满足了
-                    for (int k = 0; k < index; k++) {
+                if ((graph.row_offsets[graph.query_list[back[j]]] - graph.row_offsets[graph.query_list[back[j]] - 1]) >= dataPassingToThreads->num_of_neighbor[dataPassingToThreads->order[dataPassingToThreads->round_index]]) {//degree也满足了
+                    for (int k = 0; k < dataPassingToThreads->round_index; k++) {
                         passingBack->matching_node.push_back(tem[k]);//将原来的存回去
 
                     }
@@ -149,7 +143,6 @@ void* graph_matching_threads(void *n){
 int main(int argc,char* argv[]) {
 
     if (argc > 2) {
-
         number_of_thread=atoi(argv[2]);
         //get the pattern graph
         int e;
@@ -194,8 +187,9 @@ int main(int argc,char* argv[]) {
         graph.removeDuplicates();
         //find the true index
         graph.GetFourArray();//true_index[2]是第三小的node对应的编号(i=1~n-1)
-
+        
         DataPassingToThreads::num_of_neighbor=patternGraph.num_of_neighbor;
+
         DataPassingToThreads::order=patternGraph.order;
 
         //do the matching
@@ -207,6 +201,7 @@ int main(int argc,char* argv[]) {
         auto start = system_clock::now();
 
         //divide the node into groups i=0->all node; i!=0->the node for last time
+        vector<int> node_of_matching;
         int number_of_node_for_last_matching=graph.node;
         int begin_ptr=0;
         int* neighbor_of_prenode;
@@ -236,8 +231,7 @@ int main(int argc,char* argv[]) {
             }
             int sharing_node_ptr=0;
 
-            int *begin=new int[number_of_thread];
-            int *end=new int[number_of_thread];
+            int *passing_node_to_thread_of_each[number_of_thread];
             DataPassingToThreads *dataPassingToThreads[number_of_thread];
             int *number_of_matching=new int[number_of_thread]();
             ThreadData *args=new ThreadData[number_of_thread];
@@ -245,15 +239,27 @@ int main(int argc,char* argv[]) {
             for (int p = 0; p < number_of_thread; p++) {
                 if(p<remaining){
                     number_of_matching[p]=full_node_for_each_thread;
-                    begin[p]=p*number_of_matching[p];
-                    end[p]=(p+1)*number_of_matching[p];
                 }else {
                     number_of_matching[p]=full_node_for_each_thread-1;
-                    begin[p]=p*number_of_matching[p]+remaining;
-                    end[p]=(p+1)*number_of_matching[p]+remaining;
                 }
 
-                dataPassingToThreads[p]=new DataPassingToThreads(begin[p],end[p],i,neighbor_of_prenode,size_of_neighbor_of_prenode);
+                if(i==0){
+                    passing_node_to_thread_of_each[p]=new int[number_of_matching[p]];
+                    for(int t=0;t<number_of_matching[p];t++){
+                        passing_node_to_thread_of_each[p][t]=graph.true_index[sharing_node_ptr];
+                        sharing_node_ptr++;
+                    }
+                } else {
+                    passing_node_to_thread_of_each[p]=new int[number_of_matching[p]*i];
+                    for(int t=0;t<number_of_matching[p];t++){
+                        for(int k=0;k<i;k++){
+                            passing_node_to_thread_of_each[p][t*i+k]=node_of_matching[i*sharing_node_ptr+k];
+                        }
+                        sharing_node_ptr++;
+                    }
+                }
+
+                dataPassingToThreads[p]=new DataPassingToThreads(passing_node_to_thread_of_each[p],i,neighbor_of_prenode,size_of_neighbor_of_prenode,number_of_matching[p]);
 
                 args[p].data = dataPassingToThreads[p];
                 pthread_create(&tid[p], NULL, graph_matching_threads, &args[p]);
@@ -272,12 +278,6 @@ int main(int argc,char* argv[]) {
                 counter+=ptr_get[p].number_of_matching_node;
 
                 node_of_matching.insert(node_of_matching.end(),ptr_get[p].matching_node.begin(),ptr_get[p].matching_node.end());
-
-                /*for(int k=0;k<ptr_get[p].number_of_matching_node;k++){
-                    for(int r=0;r<i+1;r++){
-                        M[begin_ptr+i+r].push_back(ptr_get[p].matching_node[k*(i+1)+r]);
-                    }
-                }*/
             }
 
             number_of_node_for_last_matching=counter;
