@@ -49,7 +49,7 @@ struct ThreadData{
     DataPassingToThreads *data;
 };
 
-vector<int> vectors_intersection(vector<int> v1,vector<int> v2){
+static vector<int> vectors_intersection(vector<int> v1,vector<int> v2){
     vector<int> v;
     sort(v1.begin(),v1.end());
     sort(v2.begin(),v2.end());
