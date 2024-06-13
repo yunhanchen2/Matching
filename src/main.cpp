@@ -284,6 +284,9 @@ int main(int argc,char* argv[]) {
 
             begin_ptr+=i;
 
+            for(int d=0;d<number_of_thread;d++){
+                delete [] passing_node_to_thread_of_each[d];
+            }
             delete [] number_of_matching;
             delete [] args;
         }
