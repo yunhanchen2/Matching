@@ -39,10 +39,21 @@ void PatternGraph::GetTheMatchingOrder(){
 }
 
 void PatternGraph::Clear(){
-    delete[] index_ptr_of_pattern;
-    delete[] indices_of_pattern;
-    delete[] num_of_neighbor;
-    delete[] order;
+    if (index_ptr_of_pattern != nullptr) {
+        delete[] index_ptr_of_pattern;
+    }
+
+    if (indices_of_pattern != nullptr) {
+        delete[] indices_of_pattern;
+    }
+
+    if (num_of_neighbor != nullptr) {
+        delete[] num_of_neighbor;
+    }
+
+    if (order != nullptr) {
+        delete[] order;
+    }
 }
 
 
