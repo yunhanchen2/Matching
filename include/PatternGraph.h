@@ -19,5 +19,6 @@ public:
     PatternGraph(int e,int n);
     void GetTheNeighborOfEachNode();
     void GetTheMatchingOrder();
+    void Clear();
 };
 
