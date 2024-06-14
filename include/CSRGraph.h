@@ -23,5 +23,6 @@ public:
     void ReadTheGraph(char *pathname);
     void removeDuplicates();
     void GetFourArray();
+    void Clear();
 };
 
