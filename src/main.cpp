@@ -5,8 +5,8 @@
 #include <iterator>
 #include <set>
 #include <pthread.h>
-#include "PatternGraph.h"
-#include "CSRGraph.h"
+#include "../include/PatternGraph.h"
+#include "../include/CSRGraph.h"
 #include <chrono>
 
 using namespace std;
@@ -15,8 +15,6 @@ using namespace chrono;
 static int number_of_thread;
 
 static CSRGraph graph;
-
-pthread_mutex_t mu;
 
 class DataPassingToThreads{
 public:
@@ -70,10 +68,8 @@ void* graph_matching_threads(void *n){
 
 
     if(dataPassingToThreads->round_index==0){
-
         //only check the degree
         for (int j = 0; j < dataPassingToThreads->number_of_matching; j++) {//满足其邻居条件以后,j为candidate node中的jth元素
-
             if ((graph.row_offsets[graph.query_list[dataPassingToThreads->passing_node_to_thread_of_each[j]]] - graph.row_offsets[graph.query_list[dataPassingToThreads->passing_node_to_thread_of_each[j]] - 1]) >= dataPassingToThreads->num_of_neighbor[dataPassingToThreads->order[dataPassingToThreads->round_index]]) {//degree也满足了
                 passingBack->matching_node.push_back(dataPassingToThreads->passing_node_to_thread_of_each[j]);//存新match的
                 passingBack->number_of_matching_node++;
@@ -195,7 +191,6 @@ int main(int argc,char* argv[]) {
         //do the matching
         pthread_t tid[number_of_thread];
         int counter;
-        pthread_mutex_init(&mu, NULL);
 
         //record time
         auto start = system_clock::now();
@@ -204,9 +199,10 @@ int main(int argc,char* argv[]) {
         vector<int> node_of_matching;
         int number_of_node_for_last_matching=graph.node;
         int begin_ptr=0;
-        int* neighbor_of_prenode;
 
         for(int i=0;i<patternGraph.node;i++){
+            int* neighbor_of_prenode;
+
             int id=patternGraph.order[i];
             counter=0;
             //preparing data
@@ -283,15 +279,14 @@ int main(int argc,char* argv[]) {
             number_of_node_for_last_matching=counter;
 
             begin_ptr+=i;
-
             for(int d=0;d<number_of_thread;d++){
                 delete [] passing_node_to_thread_of_each[d];
             }
+
+            delete [] neighbor_of_prenode;
             delete [] number_of_matching;
             delete [] args;
         }
-
-        pthread_mutex_destroy(&mu);
 
         auto end = system_clock::now();
         auto duration= duration_cast<microseconds>(end-start);
@@ -309,7 +304,8 @@ int main(int argc,char* argv[]) {
         //testing
         cout<<"total counting: "<<ss.size()<<endl;
 
-        delete [] neighbor_of_prenode;
+        patternGraph.Clear();
+        graph.Clear();
     }
     return 0;
 }
