@@ -106,7 +106,18 @@ void CSRGraph::GetFourArray(){
     }
 }
 
+void CSRGraph::Clear(){
+    delete[] col_indices;
+    delete[] row_offsets;
+    delete[] true_index;
 
+    for (int i = 0; i < node; i++) {
+        delete[] array[i];
+    }
+    delete[] array;
+
+    delete[] query_list;
+}
 
 
 
