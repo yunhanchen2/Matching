@@ -280,12 +280,27 @@ int main(int argc,char* argv[]) {
 
             begin_ptr+=i;
             for(int d=0;d<number_of_thread;d++){
-                delete [] passing_node_to_thread_of_each[d];
+                if(passing_node_to_thread_of_each[d]!=nullptr){
+                    delete [] passing_node_to_thread_of_each[d];
+                }
             }
 
-            delete [] neighbor_of_prenode;
-            delete [] number_of_matching;
-            delete [] args;
+            if(ptr_get!=nullptr){
+                delete [] ptr_get;
+            }
+
+            if(nei[id].size()!=0){
+                delete [] neighbor_of_prenode;
+            }
+
+            if(number_of_matching!=nullptr){
+                delete [] number_of_matching;
+            }
+
+            if(args!=nullptr){
+                delete [] args;
+            }
+
         }
 
         auto end = system_clock::now();
