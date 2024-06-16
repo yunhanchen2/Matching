@@ -188,6 +188,12 @@ int main(int argc,char* argv[]) {
 
         DataPassingToThreads::order=patternGraph.order;
 
+
+
+        cout<<"testing 1"<<endl;
+
+
+
         //do the matching
         pthread_t tid[number_of_thread];
         int counter;
@@ -217,6 +223,12 @@ int main(int argc,char* argv[]) {
                 }
                 size_of_neighbor_of_prenode=nei[id].size();
             }
+
+
+
+            cout<<"testing 2"<<i<<"times if matching"<<endl;
+
+
 
             //lunch the threads
             int full_node_for_each_thread=number_of_node_for_last_matching/number_of_thread;
@@ -255,14 +267,30 @@ int main(int argc,char* argv[]) {
                     }
                 }
 
+
+                cout<<"testing 3"<<i<<"times if matching"<<endl;
+
+
+
                 dataPassingToThreads[p]=new DataPassingToThreads(passing_node_to_thread_of_each[p],i,neighbor_of_prenode,size_of_neighbor_of_prenode,number_of_matching[p]);
 
                 args[p].data = dataPassingToThreads[p];
+
+
+                cout<<"testing 3"<<i<<"times if matching"<<endl;
+
+
                 pthread_create(&tid[p], NULL, graph_matching_threads, &args[p]);
             }
 
             //get vectors in each thread and merge them together
             DataForPassingBack* ptr_get=new DataForPassingBack[number_of_thread];
+
+
+
+            cout<<"testing 4"<<endl;
+
+
 
             node_of_matching.clear();
 
@@ -278,6 +306,10 @@ int main(int argc,char* argv[]) {
 
             number_of_node_for_last_matching=counter;
 
+
+            cout<<"testing a"<<endl;
+
+
             begin_ptr+=i;
             for(int d=0;d<number_of_thread;d++){
                 if(passing_node_to_thread_of_each[d]!=nullptr){
@@ -285,17 +317,33 @@ int main(int argc,char* argv[]) {
                 }
             }
 
+
+            cout<<"testing b"<<endl;
+
+
+
             if(ptr_get!=nullptr){
                 delete [] ptr_get;
             }
+
+
+            cout<<"testing c"<<endl;
+
 
             if(nei[id].size()!=0){
                 delete [] neighbor_of_prenode;
             }
 
+
+            cout<<"testing d"<<endl;
+
+
+
             if(number_of_matching!=nullptr){
                 delete [] number_of_matching;
             }
+
+            cout<<"testing e"<<endl;
 
         }
 
@@ -316,7 +364,16 @@ int main(int argc,char* argv[]) {
         cout<<"total counting: "<<ss.size()<<endl;
 
         patternGraph.Clear();
+
+
+        cout<<"testing f"<<endl;
+        
+
         graph.Clear();
+
+
+
+        cout<<"testing g"<<endl;
     }
     return 0;
 }
