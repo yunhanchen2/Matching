@@ -199,6 +199,7 @@ int main(int argc,char* argv[]) {
         vector<int> node_of_matching;
         int number_of_node_for_last_matching=graph.node;
         int begin_ptr=0;
+        ThreadData *args=new ThreadData[number_of_thread];
 
         for(int i=0;i<patternGraph.node;i++){
             int* neighbor_of_prenode;
@@ -230,7 +231,6 @@ int main(int argc,char* argv[]) {
             int *passing_node_to_thread_of_each[number_of_thread];
             DataPassingToThreads *dataPassingToThreads[number_of_thread];
             int *number_of_matching=new int[number_of_thread]();
-            ThreadData *args=new ThreadData[number_of_thread];
 
             for (int p = 0; p < number_of_thread; p++) {
                 if(p<remaining){
@@ -297,11 +297,8 @@ int main(int argc,char* argv[]) {
                 delete [] number_of_matching;
             }
 
-            if(args!=nullptr){
-                delete [] args;
-            }
-
         }
+        delete [] args;
 
         auto end = system_clock::now();
         auto duration= duration_cast<microseconds>(end-start);
