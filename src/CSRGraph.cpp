@@ -28,7 +28,7 @@ void CSRGraph::ReadTheGraph(char *pathname){
 
     col_indices = new int[edge]();
     row_offsets = new int[node + 1]();
-    true_index = new int[node]();
+    true_index = new int[edge]();
 
     for (int i = 0; i < edge; ++i) {
         int m1, n1;
