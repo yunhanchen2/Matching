@@ -298,7 +298,6 @@ int main(int argc,char* argv[]) {
             }
 
         }
-        delete [] args;
 
         auto end = system_clock::now();
         auto duration= duration_cast<microseconds>(end-start);
