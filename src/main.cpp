@@ -159,25 +159,11 @@ int main(int argc,char* argv[]) {
             cin>>patternGraph.indices_of_pattern[i];
         }
 
-        
-        
-        cout<<"hiii 1"<<endl;
-        
-
-        
-        
         //get neighbor of each node
         patternGraph.GetTheNeighborOfEachNode();
 
-
-        cout<<"hiii 2"<<endl;
-
         //get the order
         patternGraph.GetTheMatchingOrder();
-
-
-        cout<<"hiii 3"<<endl;
-        
 
         //find out the restriction of nodes
         vector < vector<int> > nei(patternGraph.node);
@@ -191,39 +177,18 @@ int main(int argc,char* argv[]) {
             }
         }
 
-
-        cout<<"hiii 4"<<endl;
-        
-
         //get the data graph
         char *pathname = argv[1];
-        
+
         graph.ReadTheGraph(pathname);//read+sort
 
-
-        cout<<"hiii 5"<<endl;
-        
-        
         graph.removeDuplicates();
 
-
-        cout<<"hiii 6"<<endl;
-        
         //find the true index
         graph.GetFourArray();//true_index[2]是第三小的node对应的编号(i=1~n-1)
 
-
-        cout<<"hiii 7"<<endl;
-        
-        
         DataPassingToThreads::num_of_neighbor=patternGraph.num_of_neighbor;
         DataPassingToThreads::order=patternGraph.order;
-
-
-
-        cout<<"testing 1"<<endl;
-
-
 
         //do the matching
         pthread_t tid[number_of_thread];
@@ -298,30 +263,15 @@ int main(int argc,char* argv[]) {
                     }
                 }
 
-
-                cout<<"testing 3"<<i<<"times if matching"<<endl;
-
-
-
                 dataPassingToThreads[p]=new DataPassingToThreads(passing_node_to_thread_of_each[p],i,neighbor_of_prenode,size_of_neighbor_of_prenode,number_of_matching[p]);
 
                 args[p].data = dataPassingToThreads[p];
-
-
-                cout<<"testing 3"<<i<<"times if matching"<<endl;
-
 
                 pthread_create(&tid[p], NULL, graph_matching_threads, &args[p]);
             }
 
             //get vectors in each thread and merge them together
             DataForPassingBack* ptr_get=new DataForPassingBack[number_of_thread];
-
-
-
-            cout<<"testing 4"<<endl;
-
-
 
             node_of_matching.clear();
 
@@ -337,10 +287,6 @@ int main(int argc,char* argv[]) {
 
             number_of_node_for_last_matching=counter;
 
-
-            cout<<"testing a"<<endl;
-
-
             begin_ptr+=i;
             for(int d=0;d<number_of_thread;d++){
                 if(passing_node_to_thread_of_each[d]!=nullptr){
@@ -348,34 +294,17 @@ int main(int argc,char* argv[]) {
                 }
             }
 
-
-            cout<<"testing b"<<endl;
-
-
-
             if(ptr_get!=nullptr){
                 delete [] ptr_get;
             }
-
-
-            cout<<"testing c"<<endl;
-
 
             if(nei[id].size()!=0){
                 delete [] neighbor_of_prenode;
             }
 
-
-            cout<<"testing d"<<endl;
-
-
-
             if(number_of_matching!=nullptr){
                 delete [] number_of_matching;
             }
-
-            cout<<"testing e"<<endl;
-
         }
 
         auto end = system_clock::now();
@@ -396,15 +325,7 @@ int main(int argc,char* argv[]) {
 
         patternGraph.Clear();
 
-
-        cout<<"testing f"<<endl;
-
-
         graph.Clear();
-
-
-
-        cout<<"testing g"<<endl;
     }
     return 0;
 }
