@@ -159,11 +159,25 @@ int main(int argc,char* argv[]) {
             cin>>patternGraph.indices_of_pattern[i];
         }
 
+        
+        
+        cout<<"hiii 1"<<endl;
+        
+
+        
+        
         //get neighbor of each node
         patternGraph.GetTheNeighborOfEachNode();
 
+
+        cout<<"hiii 2"<<endl;
+
         //get the order
         patternGraph.GetTheMatchingOrder();
+
+
+        cout<<"hiii 3"<<endl;
+        
 
         //find out the restriction of nodes
         vector < vector<int> > nei(patternGraph.node);
@@ -177,15 +191,32 @@ int main(int argc,char* argv[]) {
             }
         }
 
+
+        cout<<"hiii 4"<<endl;
+        
+
         //get the data graph
         char *pathname = argv[1];
+        
         graph.ReadTheGraph(pathname);//read+sort
+
+
+        cout<<"hiii 5"<<endl;
+        
+        
         graph.removeDuplicates();
+
+
+        cout<<"hiii 6"<<endl;
+        
         //find the true index
         graph.GetFourArray();//true_index[2]是第三小的node对应的编号(i=1~n-1)
+
+
+        cout<<"hiii 7"<<endl;
+        
         
         DataPassingToThreads::num_of_neighbor=patternGraph.num_of_neighbor;
-
         DataPassingToThreads::order=patternGraph.order;
 
 
@@ -367,7 +398,7 @@ int main(int argc,char* argv[]) {
 
 
         cout<<"testing f"<<endl;
-        
+
 
         graph.Clear();
 
